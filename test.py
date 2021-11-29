@@ -36,7 +36,10 @@ while True:
         os.system(f'git commit -m img{a}')
         open('iter.txt', 'w').write(a)
         os.system('git push')
-        notify("Screenshot Client", "Screenshot Posted")
+
+        os.system(f'''
+        osascript -e 'display alert "Screenshot Posted" message "Your screenshot was taken and has been posted at https://raw.githubusercontent.com/stef-the/img/master/img/{a}.png, and is named {a}."'
+        ''')
 
     else:
         print('nothing at ' + str(time.time()))
