@@ -5,12 +5,14 @@ def scan(folder, jsonf):
 
     for i in os.listdir(folder):
         if not i in a:
+            global add
             os.rename(f'{folder}/{i}', f'{folder}/{len(os.listdir(folder))-1}.png')
             a.append(f'{len(os.listdir(folder))-1}.png')
             diff = True
 
             print(f'- NUM URL -\nhttps://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
             subprocess.run("pbcopy", universal_newlines=True, input=f'https://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
+            add = True
 
     for i in a:
         if not i in os.listdir(folder):
@@ -37,7 +39,8 @@ while True:
         open('iter.txt', 'w').write(a)
         os.system('git push')
 
-        os.system(f'''
+        if add:
+            os.system(f'''
         osascript -e 'display alert "Screenshot Posted" message "Your screenshot is number {a}. It has been posted to your clipboard."'
         ''')
 
