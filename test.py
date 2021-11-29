@@ -20,10 +20,14 @@ def scan(folder, jsonf):
     open(jsonf, 'w').write(json.dumps(a))
     return diff
 
+CMD = '''
+on run argv
+  display notification (item 2 of argv) with title (item 1 of argv)
+end run
+'''
+
 def notify(title, text):
-    os.system("""
-              osascript -e 'display notification "{}" with title "{}"'
-              """.format(text, title))
+  subprocess.call(['osascript', '-e', CMD, title, text])
 
 while True:
     if scan('img', 'imglist.json'):
