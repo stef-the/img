@@ -20,6 +20,11 @@ def scan(folder, jsonf):
     open(jsonf, 'w').write(json.dumps(a))
     return diff
 
+def notify(title, text):
+    os.system("""
+              osascript -e 'display notification "{}" with title "{}"'
+              """.format(text, title))
+
 while True:
     if scan('img', 'imglist.json'):
         a = str(int(open('iter.txt', 'r').read())+1)
@@ -27,6 +32,7 @@ while True:
         os.system(f'git commit -m img{a}')
         open('iter.txt', 'w').write(a)
         os.system('git push')
+        notify("Screenshot Client", "Screenshot Posted")
 
     else:
         print('nothing at ' + str(time.time()))
