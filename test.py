@@ -13,5 +13,11 @@ def scan(folder, jsonf):
             diff = True
 
     open(jsonf, 'w').write(json.dumps(a))
+    return diff
 
-scan('img', 'imglist.json')
+if scan('img', 'imglist.json'):
+    a = str(int(open('iter.txt', 'r').read())+1)
+    os.system('git add .')
+    os.system(f'git commit -m img{a}')
+    open('iter.txt', 'w').write(a)
+    os.system('git push')
