@@ -1,6 +1,7 @@
 import json, os, time, subprocess
 
 def scan(folder, jsonf):
+    global add
     a, diff, add = json.loads(open(jsonf, 'r').read()), False, False
 
     for i in os.listdir(folder):
