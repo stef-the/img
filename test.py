@@ -4,8 +4,8 @@ def scan(folder, jsonf):
 
     for i in os.listdir(folder):
         if not i in a:
-            os.rename(f'{folder}/{i}', f'{folder}/{len(os.listdir(folder))}.png')
-            a.append(f'{str(len(os.listdir(folder)))}.png')
+            os.rename(f'{folder}/{i}', f'{folder}/{len(os.listdir(folder))-1}.png')
+            a.append(f'{len(os.listdir(folder))-1}.png')
             diff = True
 
     for i in a:
