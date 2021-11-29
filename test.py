@@ -8,6 +8,8 @@ def scan(folder, jsonf):
             a.append(f'{len(os.listdir(folder))-1}.png')
             diff = True
 
+            print(f'- NUM URL -\nhttps://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
+
     for i in a:
         if not i in os.listdir(folder):
             a.remove(i)
