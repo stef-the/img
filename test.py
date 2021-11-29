@@ -1,5 +1,9 @@
 import json, os, time
-from Tkinter import Tk
+
+def addToClipBoard(text):
+    command = 'echo | set /p nul=' + text.strip() + '| clip'
+    os.system(command)
+
 def scan(folder, jsonf):
     a, diff = json.loads(open(jsonf, 'r').read()), False
 
@@ -10,12 +14,7 @@ def scan(folder, jsonf):
             diff = True
 
             print(f'- NUM URL -\nhttps://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
-            r = Tk()
-            r.withdraw()
-            r.clipboard_clear()
-            r.clipboard_append(f'https://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
-            r.update()
-            r.destroy()
+            addToClipBoard(f'https://raw.githubusercontent.com/stef-the/img/master/img/{len(os.listdir(folder))-1}.png')
 
     for i in a:
         if not i in os.listdir(folder):
