@@ -38,7 +38,7 @@ while True:
         os.system('git push')
 
         os.system(f'''
-        osascript -e 'display alert "Screenshot Posted" message "Your screenshot is named {a}. It has been posted to your clipboard."'
+        osascript -e 'display alert "Screenshot Posted" message "Your screenshot is number {a}. It has been posted to your clipboard."'
         ''')
 
     else:
