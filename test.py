@@ -1,11 +1,10 @@
 import json, os, time, subprocess
 
 def scan(folder, jsonf):
-    a, diff = json.loads(open(jsonf, 'r').read()), False
+    a, diff, add = json.loads(open(jsonf, 'r').read()), False, False
 
     for i in os.listdir(folder):
         if not i in a:
-            global add
             os.rename(f'{folder}/{i}', f'{folder}/{len(os.listdir(folder))-1}.png')
             a.append(f'{len(os.listdir(folder))-1}.png')
             diff = True
