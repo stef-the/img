@@ -1,4 +1,4 @@
-import json, os, time, subprocess
+import json, os, time, subprocess, tkinter
 
 def scan(folder, jsonf):
     global add
